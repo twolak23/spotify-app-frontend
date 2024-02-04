@@ -1,4 +1,7 @@
 import { Fragment, useState } from "react";
+import { Button, Form } from "react-bootstrap";
+import GoBackButton from "../../misc/GoBackButton";
+import GoToStartPageButton from "../../misc/GoToStartPageButton";
 
 const LoginPage = () => {
   const [username, setUsername] = useState();
@@ -15,17 +18,19 @@ const LoginPage = () => {
   }
   return (
     <Fragment>
-      <form>
-        <div>
-          <label for="usernameInput">Username</label>
-          <input id="usernameInput" type="text" value={username} onChange={onUsernameChange} />
-        </div>
-        <div>
+      <Form>
+        <Form.Group controlId="login.usernameFormGroup">
+          <label>Username</label>
+          <input type="text" value={username} onChange={onUsernameChange} />
+        </Form.Group>
+        <Form.Group controlId="login.passwordFormGroup">
           <label for="passwordInput">Password</label>
           <input id="passwordInput" type="password" value={password} onChange={onPasswordChange} />
-        </div>
-        <button type="submit" onSubmit={onSubmit}>Log In</button>
-      </form>
+        </Form.Group>
+        <Button type="submit" onSubmit={onSubmit}>Log In</Button>
+        <GoBackButton />
+        <GoToStartPageButton />
+      </Form>
     </Fragment>);
 }
 
