@@ -29,7 +29,18 @@
     <script
       src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js"
       crossorigin></script>
-
+    <!-- Add API Gateway SDK scripts -->
+    <script type="text/babel" src="lib/axios/dist/axios.standalone.js"></script>
+    <script type="text/babel" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
+    <script type="text/babel" src="lib/CryptoJS/rollups/sha256.js"></script>
+    <script type="text/babel" src="lib/CryptoJS/components/hmac.js"></script>
+    <script type="text/babel" src="lib/CryptoJS/components/enc-base64.js"></script>
+    <script type="text/babel" src="lib/url-template/url-template.js"></script>
+    <script type="text/babel" src="lib/apiGatewayCore/sigV4Client.js"></script>
+    <script type="text/babel" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
+    <script type="text/babel" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
+    <script type="text/babel" src="lib/apiGatewayCore/utils.js"></script>
+    <script type="text/babel" src="apigClient.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/react-bootstrap@next/dist/react-bootstrap.min.js"
       crossorigin></script>
@@ -40,7 +51,7 @@
       crossorigin="anonymous"
     />
 
-<script>var Alert = ReactBootstrap.Alert;</script>
+    <script>var Alert = ReactBootstrap.Alert;</script>
     <title>React App</title>
   </head>
   <body>
