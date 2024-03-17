@@ -5,10 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 import LoginPage from './components/auth/login/LoginPage';
 import RegisterPage from './components/auth/register/RegisterPage';
 import { Amplify } from 'aws-amplify';
-import amplifyconfig from './amplifyconfiguration.json';
 
 function App() {
-Amplify.configure(amplifyconfig);
 
 const existingConfig = Amplify.getConfig();
 
