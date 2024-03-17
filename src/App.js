@@ -27,13 +27,11 @@ Amplify.configure({
 });
   return (
     <div className="App">
-      <BrowserRouter>
       <Routes>
-        <Route path='/' element={<StartPage />}></Route>
-        <Route path='/register' element={<RegisterPage />}></Route>
-        <Route path='/login' element={<LoginPage />}></Route>
+        <Route path='/' element={StartPage()}></Route>
+        <Route path='/register' element={RegisterPage()}></Route>
+        <Route path='/login' element={LoginPage()}></Route>
       </Routes>
-      </BrowserRouter>
     </div>
   );
 }

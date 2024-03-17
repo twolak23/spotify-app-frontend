@@ -77,7 +77,7 @@ const RegisterPage = () => {
           <Form.Control type="email" value={email} onChange={onEmailChange} />
         </Form.Group>
         <Button type="button" onClick={e => onSubmit(e)}>Register</Button>
-        <GoBackButton />
+        {GoBackButton()}
       </Form>
     </Fragment>);
 }

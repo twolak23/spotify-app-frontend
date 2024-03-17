@@ -6,8 +6,8 @@ import { post } from 'aws-amplify/api';
 import { useNavigate } from "react-router";
 
 const LoginPage = () => {
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
 
@@ -61,8 +61,8 @@ const LoginPage = () => {
           <input id="passwordInput" type="password" value={password} onChange={onPasswordChange} />
         </Form.Group>
         <Button type="submit" onClick={e => onSubmit(e)}>Log In</Button>
-        <GoBackButton />
-        <GoToStartPageButton />
+        {GoBackButton()}
+        {GoToStartPageButton()}
       </Form>
     </Fragment>);
 }
