@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import GoBackButton from "../../misc/GoBackButton";
 import GoToStartPageButton from "../../misc/GoToStartPageButton";

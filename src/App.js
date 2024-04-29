@@ -19,7 +19,7 @@ Amplify.configure({
       ...existingConfig.API?.REST,
       SpotifyAPI: {
         endpoint:
-          'https://6wv39yq5gl.execute-api.eu-north-1.amazonaws.com/dev',
+          'https://6wv39yq5gl.execute-api.eu-north-1.amazonaws.com/prod',
         region: 'eu-north-1' // Optional
       }
     }
