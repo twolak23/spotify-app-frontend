@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-magisterkafrontend-dev-160743-authRole",
+      "UnauthRoleArn": "arn:aws:iam::960980275868:role/amplify-magisterkafrontend-dev-160743-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::960980275868:role/amplify-magisterkafrontend-dev-160743-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-magisterkafrontend-dev-160743-deployment",
+      "UnauthRoleName": "amplify-magisterkafrontend-dev-160743-unauthRole",
+      "StackName": "amplify-magisterkafrontend-dev-160743",
+      "StackId": "arn:aws:cloudformation:eu-north-1:960980275868:stack/amplify-magisterkafrontend-dev-160743/26533ec0-c36f-11ee-b4b3-0a834ba43d76",
+      "AmplifyAppId": "d6d0phpdgiqqm"
+    },
+    "categories": {
+      "function": {
+        "registerUser": {}
+      }
+    }
+  }
+}
