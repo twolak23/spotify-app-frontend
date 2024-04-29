@@ -58,7 +58,12 @@ const RegisterPage = () => {
         return error;
       })
     console.log('createdUser: ', createdUser);
+    localStorage.setItem("user", JSON.stringify(createdUser));
     alert("User is created");
+    setUsername("")
+    setPassword("")
+    setEmail("")
+    setCreatedUser({})
     navigate('/dashboard')
   }
   return (
