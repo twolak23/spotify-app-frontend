@@ -1,10 +1,10 @@
 import './App.css';
 import StartPage from './components/startPage/StartPage';
 import { Route, Routes } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
 import LoginPage from './components/auth/login/LoginPage';
 import RegisterPage from './components/auth/register/RegisterPage';
 import { Amplify } from 'aws-amplify';
+import Dashboard from './components/dashboard/Dashboard';
 
 function App() {
 
@@ -31,6 +31,7 @@ Amplify.configure({
         <Route path='/' element={StartPage()}></Route>
         <Route path='/register' element={RegisterPage()}></Route>
         <Route path='/login' element={LoginPage()}></Route>
+        <Route path='/dashboard' element={Dashboard()}></Route>
       </Routes>
     </div>
   );

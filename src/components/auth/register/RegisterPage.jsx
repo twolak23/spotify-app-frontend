@@ -59,7 +59,7 @@ const RegisterPage = () => {
       })
     console.log('createdUser: ', createdUser);
     alert("User is created");
-    navigate('/')
+    navigate('/dashboard')
   }
   return (
     <Fragment>

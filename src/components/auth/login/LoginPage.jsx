@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import GoBackButton from "../../misc/GoBackButton";
 import GoToStartPageButton from "../../misc/GoToStartPageButton";
@@ -37,17 +37,22 @@ const LoginPage = () => {
         console.log('POST Call Succeeded:');
         return res.body.json().then((data) => {
           const items = data;
+          items.username=username;
           console.log('items:', items);
+          localStorage.setItem("user", JSON.stringify(items));
           return data;
         });
       })
       .catch((error) => {
         console.log('POST Call Failed:');
         return error;
-      })
-    console.log('loggedUser: ', loggedUser);
+      });
+    localStorage.setItem("user", JSON.stringify(loggedUser));
     alert("User is logged in");
-    navigate('/')
+    setUsername("");
+    setPassword("");
+    navigate('/dashboard');
+    
   }
   return (
     <Fragment>
