@@ -40,19 +40,19 @@ const LoginPage = () => {
           items.username=username;
           console.log('items:', items);
           localStorage.setItem("user", JSON.stringify(items));
+          alert("User is logged in");
+          navigate('/dashboard');
+          setUsername("");
+          setPassword("");
           return data;
         });
       })
       .catch((error) => {
         console.log('POST Call Failed:');
+        console.log(error);
+        alert("Login failed");
         return error;
       });
-    localStorage.setItem("user", JSON.stringify(loggedUser));
-    alert("User is logged in");
-    setUsername("");
-    setPassword("");
-    navigate('/dashboard');
-    
   }
   return (
     <Fragment>
