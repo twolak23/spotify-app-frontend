@@ -6,7 +6,8 @@ const LogoutButton = (props) => {
     const navigate = useNavigate();
 
     const logout = () => {
-        const username = JSON.parse(localStorage.getItem("user"))["username"];
+        const user = JSON.parse(localStorage.getItem("user"));
+        const username = user["username"];
 
         const logoutOperation = del({
             apiName: 'SpotifyAPI',
