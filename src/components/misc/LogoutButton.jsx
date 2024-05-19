@@ -18,12 +18,10 @@ const LogoutButton = (props) => {
                 const items = data;
                 console.log('DELETE Call Succeeded', items);
                 localStorage.clear();
+                alert("You are logged out");
+                navigate("/login");
                 return data;
-              });
-            }).then(() => {
-              alert("You are logged out");
-              navigate("/login");
-            })
+              })})
             .catch((error) => {
               console.log('DELETE Call Failed');
               return error;
