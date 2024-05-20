@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import GoBackButton from "../../misc/GoBackButton";
 import GoToStartPageButton from "../../misc/GoToStartPageButton";
-import { post } from 'aws-amplify/api';
+import { ApiError, post } from 'aws-amplify/api';
 import { useNavigate } from "react-router";
 
 const LoginPage = () => {
@@ -30,7 +30,7 @@ const LoginPage = () => {
       path: '/authorize',
       options: {
         body: body
-      }
+       }
     });
     const loggedUser = loginOperation.response
       .then((res) => {
@@ -48,10 +48,19 @@ const LoginPage = () => {
         });
       })
       .catch((error) => {
-        console.log('POST Call Failed:');
-        console.log(error);
-        alert("Login failed");
-        return error;
+        if (error instanceof ApiError) {
+          if (error.response) {
+            const { 
+              statusCode, 
+              headers, 
+              body 
+            } = error.response;
+            console.error(`Received ${statusCode} error response with payload: ${body}`);
+            console.log('POST Call Failed:');
+            alert(`Login failed: ${body}`);
+            return error;
+          }
+        }
       });
   }
   return (
