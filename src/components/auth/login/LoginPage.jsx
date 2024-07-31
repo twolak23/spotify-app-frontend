@@ -4,6 +4,20 @@ import GoBackButton from "../../misc/GoBackButton";
 import GoToStartPageButton from "../../misc/GoToStartPageButton";
 import { ApiError, post } from 'aws-amplify/api';
 import { useNavigate } from "react-router";
+import styled from "styled-components";
+import { SpotifyGreenBackgroundWhiteTextButton } from "../../misc/SpotifyCustomButton";
+
+
+const LoginForm = styled(Form)`
+
+  .form-label .form-control {
+    display: inline,
+  }
+  * {
+    margin: 0.1em
+  }
+
+`
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -19,6 +33,10 @@ const LoginPage = () => {
   }
   const onSubmit = (e) => {
     e.preventDefault();
+    if(username === '' || password==='') {
+      alert("Username or password is empty");
+      return;
+    }
     const body = {
       user: {
         username: username,
@@ -65,19 +83,19 @@ const LoginPage = () => {
   }
   return (
     <Fragment>
-      <Form>
+      <LoginForm>
         <Form.Group controlId="login.usernameFormGroup">
           <label htmlFor="usernameInput">Username</label>
-          <input id="usernameInput" type="text" value={username} onChange={onUsernameChange} />
+          <input id="usernameInput" type="text" required value={username} onChange={onUsernameChange} />
         </Form.Group>
         <Form.Group controlId="login.passwordFormGroup">
           <label htmlFor="passwordInput">Password</label>
-          <input id="passwordInput" type="password" value={password} onChange={onPasswordChange} />
+          <input id="passwordInput" type="password" required value={password} onChange={onPasswordChange} />
         </Form.Group>
-        <Button type="submit" onClick={e => onSubmit(e)}>Log In</Button>
-        {GoBackButton()}
-        {GoToStartPageButton()}
-      </Form>
+        <SpotifyGreenBackgroundWhiteTextButton type="submit" onClick={e => onSubmit(e)}>Log In</SpotifyGreenBackgroundWhiteTextButton>
+        <GoBackButton/>
+        <GoToStartPageButton/>
+      </LoginForm>
     </Fragment>);
 }
 

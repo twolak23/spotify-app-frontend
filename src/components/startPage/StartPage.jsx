@@ -1,13 +1,21 @@
 import { Fragment } from "react"
 import { Link } from "react-router-dom"
+import SpotifyNavbar from "../misc/SpotifyNavbar";
+import { SpotifyGreenBackgroundWhiteTextButton } from "../misc/SpotifyCustomButton";
 
 
 const StartPage = () => {
   return (
     <Fragment>
-      <Link to="/register"><button>Register</button></Link>
-      <Link to="/login"><button>Login</button></Link>
-      <Link to="/dashboard"><button>Dashboard</button> </Link>
+      <SpotifyNavbar/>
+      {localStorage.getItem("user") 
+      ? <>
+          <Link to="/register"><SpotifyGreenBackgroundWhiteTextButton variant='success'>Register</SpotifyGreenBackgroundWhiteTextButton></Link>
+          <Link to="/login"><SpotifyGreenBackgroundWhiteTextButton variant='success'>Login</SpotifyGreenBackgroundWhiteTextButton></Link>
+        </>
+        :
+        <Link to="/dashboard"><SpotifyGreenBackgroundWhiteTextButton variant='success'>Dashboard</SpotifyGreenBackgroundWhiteTextButton> </Link>
+    }
     </Fragment>
   )
 }
