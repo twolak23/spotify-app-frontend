@@ -3,15 +3,19 @@ import { Form } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router";
 import GoBackButton from "../../misc/GoBackButton";
-import { post } from 'aws-amplify/api';
+import { ApiError, post } from 'aws-amplify/api';
+import InputValidator from "../../../utils/InputValidator";
+import { SpotifyGreenBackgroundWhiteTextButton } from "../../misc/SpotifyCustomButton";
+
 
 const RegisterPage = () => {
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
-  const [email, setEmail] = useState();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [createdUser, setCreatedUser] = useState({});
 
   const navigate = useNavigate();
+  const validator = new InputValidator();
 
   useEffect(() => {
     localStorage.setItem("user", createdUser);
@@ -36,6 +40,10 @@ const RegisterPage = () => {
         email: email
       }
     }
+    if(!validator.validateEmail(email) || !validator.validateUsername(username) || !validator.validatePassword(password)){
+      alert("Register failed")
+      return;
+    }
     const registerOperation = post({
       apiName: 'SpotifyAPI',
       path: '/register',
@@ -47,6 +55,14 @@ const RegisterPage = () => {
       .then((res) => {
         console.log('POST Call Succeeded:');
         return res.body.json().then((data) => {
+          console.log('createdUser: ', createdUser);
+          localStorage.setItem("user", JSON.stringify(createdUser));
+          alert("User is created");
+          setUsername("")
+          setPassword("")
+          setEmail("")
+          setCreatedUser({})
+          navigate('/dashboard')
           const items = data;
           console.log('items:', items)
           setCreatedUser(items);
@@ -54,17 +70,20 @@ const RegisterPage = () => {
         });
       })
       .catch((error) => {
-        console.log('POST Call Failed:');
-        return error;
+        if (error instanceof ApiError) {
+          if (error.response) {
+            const { 
+              statusCode, 
+              headers, 
+              body 
+            } = error.response;
+            console.error(`Received ${statusCode} error response with payload: ${body}`);
+            console.log('POST Call Failed:');
+            alert(`Login failed: ${body}`);
+            return error;
+          }
+        }
       })
-    console.log('createdUser: ', createdUser);
-    localStorage.setItem("user", JSON.stringify(createdUser));
-    alert("User is created");
-    setUsername("")
-    setPassword("")
-    setEmail("")
-    setCreatedUser({})
-    navigate('/dashboard')
   }
   return (
     <Fragment>
@@ -81,7 +100,7 @@ const RegisterPage = () => {
           <Form.Label>Email</Form.Label>
           <Form.Control type="email" value={email} onChange={onEmailChange} />
         </Form.Group>
-        <Button type="button" onClick={e => onSubmit(e)}>Register</Button>
+        <SpotifyGreenBackgroundWhiteTextButton type="submit" onClick={e => onSubmit(e)}>Register</SpotifyGreenBackgroundWhiteTextButton>
         {GoBackButton()}
       </Form>
     </Fragment>);
