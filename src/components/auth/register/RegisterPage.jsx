@@ -1,6 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
-import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router";
 import GoBackButton from "../../misc/GoBackButton";
 import { ApiError, post } from 'aws-amplify/api';

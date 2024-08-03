@@ -1,5 +1,4 @@
 import { del } from "@aws-amplify/api";
-import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { SpotifyGreenBackgroundWhiteTextButton } from "./SpotifyCustomButton";
 
@@ -21,7 +20,7 @@ const LogoutButton = (props) => {
                 console.log('DELETE Call Succeeded', items);
                 localStorage.clear();
                 alert("You are logged out");
-                navigate("/login");
+                navigate("/");
                 return data;
               })})
             .catch((error) => {
