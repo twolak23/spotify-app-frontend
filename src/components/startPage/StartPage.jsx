@@ -8,7 +8,7 @@ const StartPage = () => {
   return (
     <Fragment>
       <SpotifyNavbar/>
-      {localStorage.getItem("user") 
+      {!localStorage.getItem("user")
       ? <>
           <Link to="/register"><SpotifyGreenBackgroundWhiteTextButton variant='success'>Register</SpotifyGreenBackgroundWhiteTextButton></Link>
           <Link to="/login"><SpotifyGreenBackgroundWhiteTextButton variant='success'>Login</SpotifyGreenBackgroundWhiteTextButton></Link>

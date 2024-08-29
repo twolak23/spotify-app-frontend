@@ -1,9 +1,9 @@
 
 export default class InputValidator {
     constructor() {
-        this.emailRegex = /[A-Za-z0-9]+[A-Za-z0-9\._%+\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z]{2,}/g;
-        this.passwordRegex = /[A-Za-z0-9\._%&@]{6,}/g;
-        this.usernameRegex = /[A-Za-z]+[A-Za-z0-9]{3,}/g;
+        this.emailRegex = /[A-Za-z0-9]+[A-Za-z0-9\._%+\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z]{2,}/g; //eslint-disable-line
+        this.passwordRegex = /[A-Za-z0-9\._%&@]{6,}/g; //eslint-disable-line
+        this.usernameRegex = /[A-Za-z]+[A-Za-z0-9]{3,}/g; //eslint-disable-line
     }
     validateEmail = (email) => {
         return email.match(this.emailRegex) !== null;

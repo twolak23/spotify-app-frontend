@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import GoBackButton from "../../misc/GoBackButton";
 import GoToStartPageButton from "../../misc/GoToStartPageButton";
 import { ApiError, post } from 'aws-amplify/api';
@@ -23,8 +23,7 @@ const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
-
+  
   const onUsernameChange = (e) => {
     setUsername(e.target.value)
   }
@@ -50,7 +49,7 @@ const LoginPage = () => {
         body: body
        }
     });
-    const loggedUser = loginOperation.response
+    loginOperation.response
       .then((res) => {
         console.log('POST Call Succeeded:');
         return res.body.json().then((data) => {
@@ -69,8 +68,7 @@ const LoginPage = () => {
         if (error instanceof ApiError) {
           if (error.response) {
             const { 
-              statusCode, 
-              headers, 
+              statusCode,
               body 
             } = error.response;
             console.error(`Received ${statusCode} error response with payload: ${body}`);
