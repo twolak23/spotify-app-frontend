@@ -3,7 +3,6 @@ import { Form } from "react-bootstrap";
 import styled from "styled-components";
 import PlaylistsSearchResult from "./PlaylistsSearchResult";
 import { ApiError, get } from "@aws-amplify/api";
-import testResult from "./playlists_example_result.json";
 const InlineForm = styled(Form)`
 
   .form-label .form-control {
