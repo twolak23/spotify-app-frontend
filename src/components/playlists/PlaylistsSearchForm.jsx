@@ -3,6 +3,8 @@ import { Form } from "react-bootstrap";
 import styled from "styled-components";
 import PlaylistsSearchResult from "./PlaylistsSearchResult";
 import { ApiError, get } from "@aws-amplify/api";
+import testResult from "../../data/playlists_example_result.json";
+
 const InlineForm = styled(Form)`
 
   .form-label .form-control {
@@ -25,6 +27,10 @@ const PlaylistsSearchForm = () => {
     setSearchTextVisible(searchCategory !== "");
   }, [searchCategory])
 
+  const handleSearchTest = e => {
+    e.preventDefault();
+    setResult(testResult.items);
+  }
   
   const handleSearch = (e) => {
     e.preventDefault()
@@ -49,7 +55,7 @@ const PlaylistsSearchForm = () => {
         console.log('GET Call Succeeded:');
         return res.body.json().then((data) => {
           console.log('items:', data);
-          setResult(data.items);
+          setResult(data);
           return data;
         });
       })
