@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { Form } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import GoBackButton from "../../misc/GoBackButton";
@@ -15,10 +15,6 @@ const RegisterPage = () => {
 
   const navigate = useNavigate();
   const validator = new InputValidator();
-
-  useEffect(() => {
-    localStorage.setItem("user", createdUser);
-  }, [createdUser]);
 
   const onUsernameChange = (e) => {
     setUsername(e.target.value)
@@ -64,7 +60,6 @@ const RegisterPage = () => {
           navigate('/dashboard')
           const items = data;
           console.log('items:', items)
-          setCreatedUser(items);
           return data;
         });
       })

@@ -1,8 +1,9 @@
 export default class TokenValidator {
-    validateUserValid = () => {
+    validateUser = () => {
         const user = localStorage.getItem("user")
-        if(!user) return false;
-        const tokenExpireTime = user["expiresAt"];
-        return Math.floor(Date.now().valueOf() / 1000) < tokenExpireTime;
+        if(!user) return 'not_exist';
+
+        const tokenExpireTime = JSON.parse(user)["expiresAt"];
+        return (Math.floor(Date.now().valueOf() / 1000) < tokenExpireTime) ? 'exists' : 'exists_expired';
     }
 }

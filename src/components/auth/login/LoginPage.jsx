@@ -22,9 +22,9 @@ const LoginForm = styled(Form)`
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
-
-
+  
   const onUsernameChange = (e) => {
     setUsername(e.target.value)
   }
