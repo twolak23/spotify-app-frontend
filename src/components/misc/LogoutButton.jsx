@@ -1,6 +1,6 @@
 import { del } from "@aws-amplify/api";
-import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
+import { SpotifyGreenBackgroundWhiteTextButton } from "./SpotifyCustomButton";
 
 const LogoutButton = (props) => {
     const navigate = useNavigate();
@@ -29,7 +29,7 @@ const LogoutButton = (props) => {
             });
             
     }
-    return ( <Button onClick={() => logout()}>Logout</Button> );
+    return ( <SpotifyGreenBackgroundWhiteTextButton onClick={() => logout()}>Logout</SpotifyGreenBackgroundWhiteTextButton> );
 }
  
 export default LogoutButton;

@@ -5,6 +5,7 @@ import LoginPage from './components/auth/login/LoginPage';
 import RegisterPage from './components/auth/register/RegisterPage';
 import { Amplify } from 'aws-amplify';
 import Dashboard from './components/dashboard/Dashboard';
+import UserCheckWrapper from './components/misc/UserCheckWrapper';
 
 function App() {
 
@@ -30,7 +31,7 @@ Amplify.configure({
         <Route path='/' element={StartPage()}></Route>
         <Route path='/register' element={RegisterPage()}></Route>
         <Route path='/login' element={LoginPage()}></Route>
-        <Route path='/dashboard' element={Dashboard()}></Route>
+        <Route path='/dashboard' element={<UserCheckWrapper><Dashboard/></UserCheckWrapper>}></Route>
       </Routes>
     </div>
   );
