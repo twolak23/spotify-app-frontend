@@ -1,6 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
-import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router";
 import GoBackButton from "../../misc/GoBackButton";
 import { ApiError, post } from 'aws-amplify/api';
@@ -18,7 +17,8 @@ const RegisterPage = () => {
   const validator = new InputValidator();
 
   useEffect(() => {
-    localStorage.setItem("user", createdUser);
+    if(Object.keys(createdUser).length !== 0)
+      localStorage.setItem("user", JSON.stringify(createdUser));
   }, [createdUser]);
 
   const onUsernameChange = (e) => {
@@ -56,7 +56,7 @@ const RegisterPage = () => {
         console.log('POST Call Succeeded:');
         return res.body.json().then((data) => {
           console.log('createdUser: ', createdUser);
-          localStorage.setItem("user", JSON.stringify(createdUser));
+          // localStorage.setItem("user", JSON.stringify(createdUser["body"]));
           alert("User is created");
           setUsername("")
           setPassword("")
@@ -64,8 +64,9 @@ const RegisterPage = () => {
           setCreatedUser({})
           navigate('/dashboard')
           const items = data;
-          console.log('items:', items)
-          setCreatedUser(items);
+          console.log('items:', items["body"])
+          setCreatedUser(items["body"]);
+          console.log('items:', items["body"])
           return data;
         });
       })
@@ -73,8 +74,7 @@ const RegisterPage = () => {
         if (error instanceof ApiError) {
           if (error.response) {
             const { 
-              statusCode, 
-              headers, 
+              statusCode,
               body 
             } = error.response;
             console.error(`Received ${statusCode} error response with payload: ${body}`);

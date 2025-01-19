@@ -1,6 +1,5 @@
-import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
-import { SpotifyGreenBackgroundWhiteTextButton, SpotifyGreyBackgroundWhiteTextButton } from "./SpotifyCustomButton";
+import { SpotifyGreyBackgroundWhiteTextButton } from "./SpotifyCustomButton";
 
 const GoToStartPageButton = () => {
   const navigate = useNavigate()
