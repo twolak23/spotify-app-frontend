@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { SpotifyWhiteBackgroundGreenTextButton } from './SpotifyCustomButton';
 import { Navbar } from 'react-bootstrap';
 
-function SpotifyNavbar(props) {
+function SpotifyNavbar() {
     const spotifyBackgroundColor = '#1db954'
     const NavbarDiv = styled(Navbar)({
         // size

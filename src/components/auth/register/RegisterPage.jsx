@@ -16,6 +16,10 @@ const RegisterPage = () => {
   const navigate = useNavigate();
   const validator = new InputValidator();
 
+  useEffect(() => {
+    localStorage.setItem("user", createdUser);
+  }, [createdUser]);
+
   const onUsernameChange = (e) => {
     setUsername(e.target.value)
   }
