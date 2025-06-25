@@ -1,15 +1,15 @@
 import { Fragment, useState } from "react";
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import GoBackButton from "../../misc/GoBackButton";
 import GoToStartPageButton from "../../misc/GoToStartPageButton";
-import { ApiError, post } from 'aws-amplify/api';
-import { useNavigate } from "react-router";
+// import { ApiError, post } from 'aws-amplify/api';
+// import { useNavigate } from "react-router";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   
   const onUsernameChange = (e) => {
     setUsername(e.target.value)
@@ -19,49 +19,49 @@ const LoginPage = () => {
   }
   const onSubmit = (e) => {
     e.preventDefault();
-    const body = {
-      user: {
-        username: username,
-        password: password
-      }
-    }
-    const loginOperation = post({
-      apiName: 'SpotifyAPI',
-      path: '/authorize',
-      options: {
-        body: body
-       }
-    });
-    const loggedUser = loginOperation.response
-      .then((res) => {
-        console.log('POST Call Succeeded:');
-        return res.body.json().then((data) => {
-          const items = data;
-          items.username=username;
-          console.log('items:', items);
-          localStorage.setItem("user", JSON.stringify(items));
-          alert("User is logged in");
-          navigate('/dashboard');
-          setUsername("");
-          setPassword("");
-          return data;
-        });
-      })
-      .catch((error) => {
-        if (error instanceof ApiError) {
-          if (error.response) {
-            const { 
-              statusCode, 
-              headers, 
-              body 
-            } = error.response;
-            console.error(`Received ${statusCode} error response with payload: ${body}`);
-            console.log('POST Call Failed:');
-            alert(`Login failed: ${body}`);
-            return error;
-          }
-        }
-      });
+    // const body = {
+    //   user: {
+    //     username: username,
+    //     password: password
+    //   }
+    // }
+    // const loginOperation = post({
+    //   apiName: 'SpotifyAPI',
+    //   path: '/authorize',
+    //   options: {
+    //     body: body
+    //    }
+    // });
+    // const loggedUser = loginOperation.response
+    //   .then((res) => {
+    //     console.log('POST Call Succeeded:');
+    //     return res.body.json().then((data) => {
+    //       const items = data;
+    //       items.username=username;
+    //       console.log('items:', items);
+    //       localStorage.setItem("user", JSON.stringify(items));
+    //       alert("User is logged in");
+    //       navigate('/dashboard');
+    //       setUsername("");
+    //       setPassword("");
+    //       return data;
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     if (error instanceof ApiError) {
+    //       if (error.response) {
+    //         const { 
+    //           statusCode, 
+    //           headers, 
+    //           body 
+    //         } = error.response;
+    //         console.error(`Received ${statusCode} error response with payload: ${body}`);
+    //         console.log('POST Call Failed:');
+    //         alert(`Login failed: ${body}`);
+    //         return error;
+    //       }
+    //     }
+    //   });
   }
   return (
     <Fragment>
