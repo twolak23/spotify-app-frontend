@@ -31,7 +31,7 @@ Amplify.configure({
         <Route path='/' element={StartPage()}></Route>
         <Route path='/register' element={RegisterPage()}></Route>
         <Route path='/login' element={LoginPage()}></Route>
-        <Route path='/dashboard' element={<UserCheckWrapper><Dashboard/></UserCheckWrapper>}></Route>
+        <Route path='/dashboard' element={<Dashboard/>}></Route>
       </Routes>
     </div>
   );

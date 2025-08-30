@@ -3,7 +3,6 @@ import { Form } from "react-bootstrap";
 import styled from "styled-components";
 import PlaylistsSearchResult from "./PlaylistsSearchResult";
 import { ApiError, get } from "@aws-amplify/api";
-import testResult from "../../data/playlists_example_result.json";
 
 const InlineForm = styled(Form)`
 
@@ -26,18 +25,11 @@ const PlaylistsSearchForm = () => {
   useEffect(() => {
     setSearchTextVisible(searchCategory !== "");
   }, [searchCategory])
-
-  const handleSearchTest = e => {
-    e.preventDefault();
-    setResult(testResult.items);
-  }
   
   const handleSearch = (e) => {
     e.preventDefault()
     const body = {
       query: query,
-      token: JSON.parse(localStorage.getItem("user"))["access_token"],
-      username: JSON.parse(localStorage.getItem("user"))["username"],
       stage: "test"
     }
     const searchOperation = get({
@@ -45,9 +37,10 @@ const PlaylistsSearchForm = () => {
       path: `/playlists?query=${query}&offset=0&limit=10`,
       options: {
         headers: {
-          username: JSON.parse(localStorage.getItem("user"))["username"]
+          'Access-Control-Allow-Origin': window.location.origin
         },
-        body: body
+        body: body,
+        withCredentials: true // Include cookies in the request
       }
     });
     searchOperation.response

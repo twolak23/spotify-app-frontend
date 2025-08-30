@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import GoBackButton from "../../misc/GoBackButton";
@@ -17,8 +17,7 @@ const RegisterPage = () => {
   const validator = new InputValidator();
 
   useEffect(() => {
-    if(Object.keys(createdUser).length !== 0)
-      localStorage.setItem("user", JSON.stringify(createdUser));
+    localStorage.setItem("user", createdUser);
   }, [createdUser]);
 
   const onUsernameChange = (e) => {
@@ -56,7 +55,7 @@ const RegisterPage = () => {
         console.log('POST Call Succeeded:');
         return res.body.json().then((data) => {
           console.log('createdUser: ', createdUser);
-          // localStorage.setItem("user", JSON.stringify(createdUser["body"]));
+          localStorage.setItem("user", JSON.stringify(createdUser));
           alert("User is created");
           setUsername("")
           setPassword("")
@@ -64,9 +63,7 @@ const RegisterPage = () => {
           setCreatedUser({})
           navigate('/dashboard')
           const items = data;
-          console.log('items:', items["body"])
-          setCreatedUser(items["body"]);
-          console.log('items:', items["body"])
+          console.log('items:', items)
           return data;
         });
       })
@@ -74,7 +71,8 @@ const RegisterPage = () => {
         if (error instanceof ApiError) {
           if (error.response) {
             const { 
-              statusCode,
+              statusCode, 
+              headers, 
               body 
             } = error.response;
             console.error(`Received ${statusCode} error response with payload: ${body}`);
